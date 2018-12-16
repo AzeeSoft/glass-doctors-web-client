@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import UsersService from '../services/UsersService';
+import UsersService from '@/services/UsersService';
 
 @Component({
 
