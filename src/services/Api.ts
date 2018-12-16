@@ -1,7 +1,12 @@
 import axios from 'axios';
 
-export default () => {
-    return axios.create({
-        baseURL: `http://localhost:8081`,
-    });
-};
+export class Api {
+    public static get instance() {
+        return axios.create({
+            baseURL: `http://localhost:8081`,
+            headers: {
+                Authorization: `bearer  `,
+            },
+        });
+    }
+}

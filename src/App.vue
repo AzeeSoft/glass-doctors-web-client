@@ -33,7 +33,6 @@ export default class App extends Vue {
 
 * {
   box-sizing: border-box;
-  // overflow: auto;
   transition: color 0.2s linear;
   transition: background-color 0.2s linear;
 }
