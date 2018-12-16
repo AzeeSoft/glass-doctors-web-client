@@ -17,7 +17,7 @@
       <v-container pa-0>
         <v-layout>
           <v-flex>Made with ❤️ by Azee</v-flex>
-          👓 ©️ {{ new Date().getFullYear() }}
+          ©️ {{ new Date().getFullYear() }}
         </v-layout>
       </v-container>
     </v-footer>
