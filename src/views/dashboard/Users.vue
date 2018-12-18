@@ -10,7 +10,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import UsersService from '@/services/UsersService';
+import userService from '@/services/userService';
 
 @Component({
 
@@ -23,7 +23,7 @@ export default class Users extends Vue {
   }
 
   private async getUsers() {
-    const response = await UsersService.fetchUsers();
+    const response = await userService.fetchUsers();
     this.users = response.data.users;
   }
 }

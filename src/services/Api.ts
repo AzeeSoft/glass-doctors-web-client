@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export class Api {
-    public static get instance() {
-        return axios.create({
+export const Api = {
+    get instance() {
+        const axiosInstance = axios.create({
             baseURL: `http://localhost:8081`,
-            headers: {
-                Authorization: `bearer  `,
-            },
+            withCredentials: true,
         });
-    }
-}
+
+        return axiosInstance;
+    },
+};
