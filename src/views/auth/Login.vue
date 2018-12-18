@@ -49,9 +49,7 @@ export default class Login extends Vue {
   private async mounted() {
     const resData = await authService.validateApiToken();
     if (resData.success) {
-      console.log('Already Logged In');
-    } else {
-      console.log('Not Logged In');
+        // TODO: Go to dashboard
     }
   }
 
@@ -59,7 +57,7 @@ export default class Login extends Vue {
     if ((this.$refs.loginForm as any).validate()) {
       const resData = await authService.login(this.username, this.password);
 
-      console.log(`Login result: ${JSON.stringify(resData)}`);
+      // TODO: Do Something
 
       this.message = resData.message;
     }

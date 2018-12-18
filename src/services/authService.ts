@@ -4,7 +4,6 @@ import { ApiResponseData } from '@/tools/types/api/index';
 export default {
     async validateApiToken() {
         const res = await Api.instance.post<ApiResponseData>('auth/validateApiToken');
-        console.log(`Validation Result: ${JSON.stringify(res.data)}`);
         return res.data;
     },
 
