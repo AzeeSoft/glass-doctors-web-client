@@ -8,7 +8,9 @@
             <v-container class="auth-container" fluid>
                 <v-layout class="auth-layout" row justify-center mt-5>
                     <v-flex xs12 sm8 md6 lg4>
-                        <router-view></router-view>
+                        <transition name="page-switch" appear>
+                            <router-view></router-view>
+                        </transition>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -25,34 +27,47 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import AppConfig from '@/AppConfig';
-import NavToolbar from '@/components/common/navigation/NavToolbar.vue';
+    import Vue from 'vue';
+    import Component from 'vue-class-component';
+    import AppConfig from '@/AppConfig';
+    import NavToolbar from '@/components/common/navigation/NavToolbar.vue';
 
-@Component({
-    components: {
-        NavToolbar,
-    },
-})
-export default class Auth extends Vue {
+    @Component({
+        components: {
+            NavToolbar,
+        },
+    })
+    export default class Auth extends Vue {
 
-}
+    }
 
 </script>
 
 <style lang="scss" scoped>
-.auth-content {
-    min-height: 100vh;
-}
+    .auth-content {
+        min-height: 100vh;
+    }
 
-.auth-container {
-    display: flex;
-    min-height: 100%;
-}
+    .auth-container {
+        display: flex;
+        min-height: 100%;
+    }
 
-.auth-layout {
-    min-height: 100%;
-}
+    .auth-layout {
+        min-height: 100%;
+    }
+
+    /* Transitions */
+
+    // Page Switch
+    .page-switch-enter-active,
+    .page-switch-leave-active {
+        transition: all 0.5s;
+    }
+    .page-switch-enter,
+    .page-switch-leave-to {
+        opacity: 0;
+        transform: translateY(50px);
+    }
 </style>
 

@@ -11,79 +11,83 @@
             <v-btn class="primary" flat v-on:click="logout()">Logout</v-btn>
         </NavToolbar>
 
-        <v-hover>
-            <v-navigation-drawer
-                app
-                floating
-                :disable-resize-watcher="true"
-                permanent
-                hide-overlay
-                :mini-variant="collapseNavDrawer && !hover"
-                id="navDrawer"
-                slot-scope="{ hover }"
-                class="mt-5"
-                style="top: 16px; margin-bottom: 32px"
-            >
-                <v-toolbar flat class="secondary" dark height="48px">
-                    <v-list class="pa-0">
-                        <v-list-tile @click.stop="collapseNavDrawer = !collapseNavDrawer">
-                            <v-list-tile-action>
-                                <v-btn icon>
-                                    <v-icon v-if="collapseNavDrawer && !hover">menu</v-icon>
-                                    <v-icon v-else-if="collapseNavDrawer && hover">chevron_left</v-icon>
-                                    <v-icon v-else>first_page</v-icon>
-                                </v-btn>
-                            </v-list-tile-action>
+        <transition name="nav-drawer" appear>
+            <v-hover>
+                <v-navigation-drawer
+                    app
+                    floating
+                    :disable-resize-watcher="true"
+                    permanent
+                    hide-overlay
+                    :mini-variant="collapseNavDrawer && !hover"
+                    id="navDrawer"
+                    slot-scope="{ hover }"
+                    class="mt-5"
+                    style="top: 16px; margin-bottom: 32px"
+                >
+                    <v-toolbar flat class="secondary" dark height="48px">
+                        <v-list class="pa-0">
+                            <v-list-tile @click.stop="collapseNavDrawer = !collapseNavDrawer">
+                                <v-list-tile-action>
+                                    <v-btn icon>
+                                        <v-icon v-if="collapseNavDrawer && !hover">menu</v-icon>
+                                        <v-icon v-else-if="collapseNavDrawer && hover">chevron_left</v-icon>
+                                        <v-icon v-else>first_page</v-icon>
+                                    </v-btn>
+                                </v-list-tile-action>
+
+                                <v-list-tile-content>
+                                    <v-list-tile-title>{{collapseNavDrawer?"Pin":"Unpin"}} Navigation Drawer</v-list-tile-title>
+                                </v-list-tile-content>
+                            </v-list-tile>
+                        </v-list>
+                    </v-toolbar>
+
+                    <v-list class="pt-2">
+                        <v-list-tile avatar>
+                            <v-list-tile-avatar>
+                                <img
+                                    src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1"
+                                >
+                            </v-list-tile-avatar>
 
                             <v-list-tile-content>
-                                <v-list-tile-title>{{collapseNavDrawer?"Pin":"Unpin"}} Navigation Drawer</v-list-tile-title>
+                                <v-list-tile-title>User's Name</v-list-tile-title>
                             </v-list-tile-content>
                         </v-list-tile>
-                    </v-list>
-                </v-toolbar>
 
-                <v-list class="pt-2">
-                    <v-list-tile avatar>
-                        <v-list-tile-avatar>
-                            <img
-                                src="https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100&ssl=1"
+                        <div v-for="(navRouterLinkGroup, index) in navRouterLinks" :key="index">
+                            <v-divider></v-divider>
+                            <router-link
+                                v-for="navRouterLink in navRouterLinkGroup"
+                                :key="navRouterLink.title"
+                                :to="navRouterLink.to"
+                                tag="v-list-tile"
+                                append
                             >
-                        </v-list-tile-avatar>
+                                <v-list-tile-action>
+                                    <v-btn icon>
+                                        <v-icon medium>{{navRouterLink.icon}}</v-icon>
+                                    </v-btn>
+                                </v-list-tile-action>
 
-                        <v-list-tile-content>
-                            <v-list-tile-title>User's Name</v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile>
-
-                    <div v-for="(navRouterLinkGroup, index) in navRouterLinks" :key="index">
-                        <v-divider></v-divider>
-                        <router-link
-                            v-for="navRouterLink in navRouterLinkGroup"
-                            :key="navRouterLink.title"
-                            :to="navRouterLink.to"
-                            tag="v-list-tile"
-                            append
-                        >
-                            <v-list-tile-action>
-                                <v-btn icon>
-                                    <v-icon medium>{{navRouterLink.icon}}</v-icon>
-                                </v-btn>
-                            </v-list-tile-action>
-
-                            <v-list-tile-content>
-                                <v-list-tile-title>{{navRouterLink.title}}</v-list-tile-title>
-                            </v-list-tile-content>
-                        </router-link>
-                    </div>
-                </v-list>
-            </v-navigation-drawer>
-        </v-hover>
+                                <v-list-tile-content>
+                                    <v-list-tile-title>{{navRouterLink.title}}</v-list-tile-title>
+                                </v-list-tile-content>
+                            </router-link>
+                        </div>
+                    </v-list>
+                </v-navigation-drawer>
+            </v-hover>
+        </transition>
 
         <v-content class="dashboard-content">
             <v-container class="dashboard-container" fluid>
                 <v-layout class="dashboard-layout" row justify-center mt-5>
-                    <v-flex xs12 sm8 md6 lg4>
-                        <router-view></router-view>
+                    <v-flex xs12 sm10>
+                        <transition name="page-switch" appear mode="out-in">
+                            <router-view></router-view>
+                        </transition>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -178,5 +182,28 @@
                 }
             }
         }
+    }
+
+    /* Transitions */
+
+    // Page Switch
+    .page-switch-enter-active,
+    .page-switch-leave-active {
+        transition: all 0.5s;
+    }
+    .page-switch-enter,
+    .page-switch-leave-to {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    // Nav Drawer
+    .nav-drawer-enter-active,
+    .nav-drawer-leave-active {
+        transition: transform 0.5s 0.5s !important;
+    }
+    .nav-drawer-enter,
+    .nav-drawer-leave-to {
+        transform: translateX(-100px) !important;
     }
 </style>

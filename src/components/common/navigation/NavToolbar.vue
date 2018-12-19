@@ -1,22 +1,24 @@
 <template>
-    <v-toolbar dark color="primary" id="navToolbar" app clipped-left>
-        <div>
-            <slot name="hamburgerHolder"></slot>
-        </div>
-        <img src="../../../../src/assets/images/logo/glass-white.png">
-        <v-toolbar-title>{{appTitle}}</v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-sm-and-down">
-            <v-btn
-                class="switch-theme-button py-2 mx-3"
-                color="secondary"
-                round
-                depressed
-                v-on:click="switchTheme()"
-            >Switch Theme</v-btn>
-            <slot></slot>
-        </v-toolbar-items>
-    </v-toolbar>
+    <transition name="nav-toolbar" appear>
+        <v-toolbar dark color="primary" id="navToolbar" app clipped-left>
+            <div>
+                <slot name="hamburgerHolder"></slot>
+            </div>
+            <img src="../../../../src/assets/images/logo/glass-white.png">
+            <v-toolbar-title>{{appTitle}}</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn
+                    class="switch-theme-button py-2 mx-3"
+                    color="secondary"
+                    round
+                    depressed
+                    v-on:click="switchTheme()"
+                >Switch Theme</v-btn>
+                <slot></slot>
+            </v-toolbar-items>
+        </v-toolbar>
+    </transition>
 </template>
 
 <script lang="ts">
@@ -50,5 +52,16 @@
                 }
             }
         }
+    }
+
+    /* Transitions */
+
+    .nav-toolbar-enter-active,
+    .nav-toolbar-leave-active {
+        transition: transform 0.5s !important;
+    }
+    .nav-toolbar-enter,
+    .nav-toolbar-leave-to {
+        transform: translateY(-100px) !important;
     }
 </style>

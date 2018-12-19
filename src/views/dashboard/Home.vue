@@ -1,6 +1,8 @@
 <template>
     <div class="home">
-        <v-img alt="Vue logo" :src="logoImage"></v-img>
+        <v-flex d-flex justify-center>
+              <v-img alt="Vue logo" :src="logoImage" max-width="300px"></v-img>
+        </v-flex>
     </div>
 </template>
 
