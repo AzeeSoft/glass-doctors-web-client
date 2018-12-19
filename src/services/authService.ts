@@ -15,4 +15,9 @@ export default {
         });
         return res.data;
     },
+
+    async logoutSession() {
+        const res = await Api.instance.post<ApiResponseData>('auth/logoutSession');
+        return res.data;
+    },
 };

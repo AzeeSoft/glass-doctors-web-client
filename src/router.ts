@@ -13,9 +13,17 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
         {
+            path: '/',
+            redirect: 'auth',
+        },
+        {
             path: '/auth',
             component: Auth,
             children: [
+                {
+                    path: '',
+                    redirect: 'login',
+                },
                 {
                     path: 'login',
                     component: Login,
@@ -24,10 +32,6 @@ export default new Router({
                     path: 'signUp',
                     component: SignUp,
                 },
-                {
-                    path: '',
-                    redirect: 'login',
-                },
             ],
         },
         {
@@ -35,18 +39,22 @@ export default new Router({
             component: Dashboard,
             children: [
                 {
-                    path: '/',
+                    path: '',
+                    redirect: 'home',
+                },
+                {
+                    path: 'home',
                     name: 'home',
                     component: Home,
                 },
                 {
-                    path: '/users',
+                    path: 'users',
                     name: 'users',
                     // component: Users,
                     component: () => import('./views/dashboard/Users.vue'),
                 },
                 {
-                    path: '/about',
+                    path: 'about',
                     name: 'about',
                     // route level code-splitting
                     // this generates a separate chunk (about.[hash].js) for this route

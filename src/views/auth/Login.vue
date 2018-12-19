@@ -49,7 +49,7 @@ export default class Login extends Vue {
   private async mounted() {
     const resData = await authService.validateApiToken();
     if (resData.success) {
-        // TODO: Go to dashboard
+      this.goToDashboard();
     }
   }
 
@@ -57,10 +57,16 @@ export default class Login extends Vue {
     if ((this.$refs.loginForm as any).validate()) {
       const resData = await authService.login(this.username, this.password);
 
-      // TODO: Do Something
-
       this.message = resData.message;
+
+      if (resData.success) {
+        this.goToDashboard();
+      }
     }
+  }
+
+  private goToDashboard() {
+    this.$router.push('/dashboard');
   }
 }
 </script>
