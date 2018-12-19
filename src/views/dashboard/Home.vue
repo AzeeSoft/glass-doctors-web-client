@@ -1,17 +1,17 @@
 <template>
     <div class="home">
-        <img alt="Vue logo" src="../../assets/images/logo/hi-res/glass-black.png">
+        <v-img alt="Vue logo" :src="logoImage"></v-img>
     </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+    import { Component, Vue } from 'vue-property-decorator';
 
-@Component({
-    components: {
-        HelloWorld,
-    },
-})
-export default class Home extends Vue { }
+    @Component({
+        components: {
+        },
+    })
+    export default class Home extends Vue {
+        private logoImage = require('@/assets/images/logo/hi-res/glass-black.png');
+    }
 </script>
