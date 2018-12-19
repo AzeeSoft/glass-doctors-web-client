@@ -30,9 +30,14 @@
                             <v-list-tile @click.stop="collapseNavDrawer = !collapseNavDrawer">
                                 <v-list-tile-action>
                                     <v-btn icon>
-                                        <v-icon v-if="collapseNavDrawer && !hover">menu</v-icon>
-                                        <v-icon v-else-if="collapseNavDrawer && hover">chevron_left</v-icon>
-                                        <v-icon v-else>first_page</v-icon>
+                                        <transition name="fade-simple" appear mode="out-in">
+                                            <v-icon v-if="collapseNavDrawer && !hover" key="menu">menu</v-icon>
+                                            <v-icon
+                                                v-else-if="collapseNavDrawer && hover"
+                                                key="pin"
+                                            >chevron_left</v-icon>
+                                            <v-icon v-else key="unpin">cancel</v-icon>
+                                        </transition>
                                     </v-btn>
                                 </v-list-tile-action>
 
@@ -85,7 +90,7 @@
             <v-container class="dashboard-container" fluid>
                 <v-layout class="dashboard-layout" row justify-center mt-5>
                     <v-flex xs12 sm10>
-                        <transition name="page-switch" appear mode="out-in">
+                        <transition name="router-view-switch-default" appear mode="out-in">
                             <router-view></router-view>
                         </transition>
                     </v-flex>
@@ -185,17 +190,6 @@
     }
 
     /* Transitions */
-
-    // Page Switch
-    .page-switch-enter-active,
-    .page-switch-leave-active {
-        transition: all 0.5s;
-    }
-    .page-switch-enter,
-    .page-switch-leave-to {
-        opacity: 0;
-        transform: translateY(50px);
-    }
 
     // Nav Drawer
     .nav-drawer-enter-active,

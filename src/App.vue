@@ -30,6 +30,7 @@ export default class App extends Vue {
 
 <style lang="scss">
 @import "@/scss/common/constants.scss";
+@import "@/scss/common/transitions.scss";
 
 * {
     box-sizing: border-box;

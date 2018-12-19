@@ -8,7 +8,7 @@
             <v-container class="auth-container" fluid>
                 <v-layout class="auth-layout" row justify-center mt-5>
                     <v-flex xs12 sm8 md6 lg4>
-                        <transition name="page-switch" appear>
+                        <transition name="router-view-switch-default" appear mode="out-in">
                             <router-view></router-view>
                         </transition>
                     </v-flex>
@@ -55,19 +55,6 @@
 
     .auth-layout {
         min-height: 100%;
-    }
-
-    /* Transitions */
-
-    // Page Switch
-    .page-switch-enter-active,
-    .page-switch-leave-active {
-        transition: all 0.5s;
-    }
-    .page-switch-enter,
-    .page-switch-leave-to {
-        opacity: 0;
-        transform: translateY(50px);
     }
 </style>
 
