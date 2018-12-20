@@ -31,11 +31,14 @@
                                 <v-list-tile-action>
                                     <v-btn icon>
                                         <transition name="fade-simple" appear mode="out-in">
-                                            <v-icon v-if="collapseNavDrawer && !hover" key="menu">menu</v-icon>
+                                            <v-icon
+                                                v-if="collapseNavDrawer && !hover"
+                                                key="menu"
+                                            >menu</v-icon>
                                             <v-icon
                                                 v-else-if="collapseNavDrawer && hover"
                                                 key="pin"
-                                            >chevron_left</v-icon>
+                                            >vertical_align_bottom</v-icon>
                                             <v-icon v-else key="unpin">cancel</v-icon>
                                         </transition>
                                     </v-btn>
@@ -88,8 +91,8 @@
 
         <v-content class="dashboard-content">
             <v-container class="dashboard-container" fluid>
-                <v-layout class="dashboard-layout" row justify-center mt-5>
-                    <v-flex xs12 sm10>
+                <v-layout class="dashboard-layout" row justify-center>
+                    <v-flex>
                         <transition name="router-view-switch-default" appear mode="out-in">
                             <router-view></router-view>
                         </transition>
@@ -173,6 +176,8 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "@/scss/common/constants.scss";
+
     #navDrawer {
         .v-list {
             .v-list__tile {
@@ -184,6 +189,20 @@
                     .v-btn {
                         margin: 6px;
                     }
+                }
+            }
+
+            .router-link-active {
+                border-right: $accentColor solid $border-small;
+                background-color: rgba(127, 127, 127, 0.15);
+                // color: $accentColor;
+
+                .v-list__tile__title {
+                    // font-weight: 700 !important;
+                }
+
+                i {
+                    // color: $accentColor;
                 }
             }
         }

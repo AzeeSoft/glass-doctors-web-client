@@ -9,7 +9,7 @@
             <v-spacer></v-spacer>
             <v-toolbar-items class="hidden-sm-and-down">
                 <v-btn
-                    class="switch-theme-button py-2 mx-3"
+                    class="auto-height py-2 mx-3"
                     color="secondary"
                     round
                     depressed
@@ -39,20 +39,6 @@
 
 <style lang="scss">
     @import "@/scss/common/constants.scss";
-
-    .v-toolbar#navToolbar {
-        .v-toolbar__items {
-            button.v-btn {
-                &.switch-theme-button {
-                    height: auto;
-                }
-
-                &.router-link-exact-active {
-                    border-bottom: $border-medium solid $accentColor;
-                }
-            }
-        }
-    }
 
     /* Transitions */
 

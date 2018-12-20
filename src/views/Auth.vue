@@ -1,15 +1,17 @@
 <template>
     <div id="auth">
         <NavToolbar>
-            <router-link to="../login" append tag="v-btn" class="v-btn--flat">Login</router-link>
-            <router-link to="../signUp" append tag="v-btn" class="v-btn--flat">Sign Up</router-link>
+            <router-link to="../login" append tag="v-btn" class="v-btn--flat route-indicator">Login</router-link>
+            <router-link to="../signUp" append tag="v-btn" class="v-btn--flat route-indicator">Sign Up</router-link>
         </NavToolbar>
         <v-content class="auth-content">
             <v-container class="auth-container" fluid>
                 <v-layout class="auth-layout" row justify-center mt-5>
                     <v-flex xs12 sm8 md6 lg4>
                         <transition name="router-view-switch-default" appear mode="out-in">
-                            <router-view></router-view>
+                            <keep-alive>
+                                <router-view></router-view>
+                            </keep-alive>
                         </transition>
                     </v-flex>
                 </v-layout>
